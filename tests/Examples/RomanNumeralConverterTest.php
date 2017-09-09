@@ -9,78 +9,25 @@ class RomanNumeralConverterTest extends TestCase
 {
     /**
      * @test
+     * @dataProvider singleSymbolsProvider
      */
-    public function mustConvertISymbolTo1()
+    public function mustConvertSingleSymbolToIntegerCorrectly($symbol, $integer)
     {
         $converter = new RomanNumeralConverter();
-        $integer   = $converter->toInt('I');
 
-        $this->assertEquals(1, $integer);
+        $this->assertEquals($integer, $converter->toInt($symbol));
     }
 
-    /**
-     * @test
-     */
-    public function mustConvertVSymbolTo5()
+    public function singleSymbolsProvider()
     {
-        $converter = new RomanNumeralConverter();
-        $integer   = $converter->toInt('V');
-
-        $this->assertEquals(5, $integer);
-    }
-
-    /**
-     * @test
-     */
-    public function mustConvertXSymbolTo10()
-    {
-        $converter = new RomanNumeralConverter();
-        $integer   = $converter->toInt('X');
-
-        $this->assertEquals(10, $integer);
-    }
-
-    /**
-     * @test
-     */
-    public function mustConvertLSymbolTo50()
-    {
-        $converter = new RomanNumeralConverter();
-        $integer   = $converter->toInt('L');
-
-        $this->assertEquals(50, $integer);
-    }
-
-    /**
-     * @test
-     */
-    public function mustConvertCSymbolTo100()
-    {
-        $converter = new RomanNumeralConverter();
-        $integer   = $converter->toInt('C');
-
-        $this->assertEquals(100, $integer);
-    }
-
-    /**
-     * @test
-     */
-    public function mustConvertDSymbolTo500()
-    {
-        $converter = new RomanNumeralConverter();
-        $integer   = $converter->toInt('D');
-
-        $this->assertEquals(500, $integer);
-    }
-
-    /**
-     * @test
-     */
-    public function mustConvertMSymbolTo1000()
-    {
-        $converter = new RomanNumeralConverter();
-        $integer   = $converter->toInt('M');
-
-        $this->assertEquals(1000, $integer);
+        return [
+            ['I', 1],
+            ['V', 5],
+            ['X', 10],
+            ['L', 50],
+            ['C', 100],
+            ['D', 500],
+            ['M', 1000],
+        ];
     }
 }

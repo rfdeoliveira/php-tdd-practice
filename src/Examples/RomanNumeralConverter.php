@@ -4,24 +4,22 @@ namespace TDD\Examples;
 
 class RomanNumeralConverter
 {
+    private $symbols = array(
+        'I' => 1,
+        'V' => 5,
+        'X' => 10,
+        'L' => 50,
+        'C' => 100,
+        'D' => 500,
+        'M' => 1000,
+    );
+
     public function toInt($romanNumeral)
     {
-        if ($romanNumeral === 'I') {
-            return 1;
-        } else if ($romanNumeral === 'V') {
-            return 5;
-        } else if ($romanNumeral === 'X') {
-            return 10;
-        } else if ($romanNumeral === 'L') {
-            return 50;
-        } else if ($romanNumeral === 'C') {
-            return 100;
-        } else if ($romanNumeral === 'D') {
-            return 500;
-        } else if ($romanNumeral === 'M') {
-            return 1000;
-        } else {
+        if (! array_key_exists($romanNumeral, $this->symbols)) {
             return 0;
         }
+
+        return $this->symbols[$romanNumeral];
     }
 }

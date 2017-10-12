@@ -30,4 +30,63 @@ class RomanNumeralConverterTest extends TestCase
             ['M', 1000],
         ];
     }
+
+    /**
+     * @test
+     * @dataProvider twoEqualSymbolsProvider
+     */
+    public function mustConvertNumberWithTwoEqualSymbolsToIntegerCorrectly($symbols, $integer)
+    {
+        $converter = new RomanNumeralConverter();
+
+        $this->assertEquals($integer, $converter->toInt($symbols));
+    }
+
+    public function twoEqualSymbolsProvider()
+    {
+        return [
+            ['II', 2],
+            ['XX', 20],
+        ];
+    }
+
+    /**
+     * @test
+     */
+    public function mustConvertXXIIRomanNumberToIntegerNumber22()
+    {
+        $converter = new RomanNumeralConverter;
+        $result    = $converter->toInt('XXII');
+        $this->assertEquals(22, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function mustConvertIVToIntegerNumber4()
+    {
+        $converter = new RomanNumeralConverter;
+        $result    = $converter->toInt('IV');
+        $this->assertEquals(4, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function mustConvertIXToIntegerNumber9()
+    {
+        $converter = new RomanNumeralConverter;
+        $result    = $converter->toInt('IX');
+        $this->assertEquals(9, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function mustConvertXXIVToIntegerNumber24()
+    {
+        $converter = new RomanNumeralConverter;
+        $result    = $converter->toInt('XXIV');
+        $this->assertEquals(24, $result);
+    }
 }

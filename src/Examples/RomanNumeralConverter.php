@@ -16,10 +16,25 @@ class RomanNumeralConverter
 
     public function toInt($romanNumeral)
     {
-        if (! array_key_exists($romanNumeral, $this->symbols)) {
-            return 0;
+        $sum = 0;
+        $prevDigit = 0;
+        for ($i = strlen($romanNumeral) -1; $i >= 0; $i--) {
+            $current = 0;
+            $symbol  = $romanNumeral[$i];
+            if (array_key_exists($symbol, $this->symbols)) {
+                $current = $this->symbols[$symbol];
+            }
+
+            $multiplier = 1;
+            if ($current < $prevDigit) {
+                $multiplier = -1;
+            }
+
+            $sum += ($current * $multiplier);
+
+            $prevDigit = $current;
         }
 
-        return $this->symbols[$romanNumeral];
+        return (int) $sum;
     }
 }
